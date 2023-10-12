@@ -54,19 +54,21 @@ function printGithubUserProfile(username) {
     .then(response => response.json())
     .then(data => {
 
-//         let img = document.createElement("img");
-//    img.src = data.avatar_url;
+        let img = document.createElement("img");
+        img.src = data.avatar_url;
 
-//    let h1 = document.createElement("h1")
-//    h1.innerHTML = data.name;
-//    let name = h1.innerHTML;
+        let name = document.createElement("p");
+        name.innerHTML = data.name;
+        document.body.appendChild(img);
+        document.body.appendChild(name);
 
-//    document.body.appendChild(img);
-//    document.body.appendChild(name);
-//    return {img, name}
+        let obj = {
+            name: data.name,
+            img: data.avatar_url
+        };
+
+        return obj
     })
-    
-   
 }
 
 
@@ -74,14 +76,46 @@ function printGithubUserProfile(username) {
 
 //EJERCICIO 7
 function getAndPrintGitHubUserProfile(username) {
-    fetch(`https://api.github.com/users/${username}`)
+    return fetch(`https://api.github.com/users/${username}`)
     .then(response => response.json())
-    .then(data => data)
-    let list = `<section>
-                    <img src=${data.avatar_url} alt="imagen de ${username}">
-                    <h1>${data.name}</h1>
-                    <p>Public repos: ${data.public_repos}</p>
-                </section>`
+    .then(data => {
+        let lista = `<section>
+                        <img src="${data.avatar_url}" alt="${data.name}">
+                        <h1>${data.name}</h1>
+                        <p>Public repos: ${data.public_repos}</p>
+                    </section>`
 
-    return list;
-  }
+        return lista;
+    })
+}
+
+
+//EJERCICIO 8 NO ME DEJA LEER EL EVENT LISTENER
+// let form = document.getElementById("form-ej-8");
+// form.addEventListener("submit", function(event) {
+
+//     event.preventDefault();
+//     console.log(event);
+// });
+
+
+//EJERCICIO 9
+function fetchGithubUsers(userNames) {
+    let promiseArr = []
+
+    for (let i = 0; i < userNames.length; i++) {
+        let promise = fetch(`https://api.github.com/users/${userNames[i]}`)
+        .then(response => response.json())
+        .then(data => data) 
+
+        promiseArr.push(promise)
+    }
+
+    return Promise.all(promiseArr)
+    .then(data => {
+        for (let i = 0; i < promiseArr.length; i++) {
+            console.log(data[i].repos_url);
+            console.log(data[i].name);
+        }
+    })
+}
