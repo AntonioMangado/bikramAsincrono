@@ -1,8 +1,6 @@
 //RESUELVE TUS EJERCICIOS AQUI
 //EJERCICIO 1
 function getAllBreeds () {
-    
-
 return fetch("https://dog.ceo/api/breeds/list/all")
         .then(response => response.json())
         .then(breed => Object.keys(breed.message))
@@ -11,10 +9,8 @@ return fetch("https://dog.ceo/api/breeds/list/all")
             })
 }
 
-
 //EJERCICIO 2
 function getRandomDog() {
-    
     return fetch("https://dog.ceo/api/breeds/image/random")
         .then(response => response.json())
         .then(breed => breed.message)
@@ -27,17 +23,12 @@ function getAllImagesByBreed() {
     .then(breed => breed.message)
 }
 
-
 //EJERCICIO 4
 function getAllImagesByBreed2(breed) {
     return fetch(`https://dog.ceo/api/breed/${breed}/images`)
     .then(response => response.json())
     .then(data => data.message)
 }
-
-
-
-
 
 //EJERCICIO 5
 function getGitHubUserProfile(username) {
@@ -46,9 +37,7 @@ function getGitHubUserProfile(username) {
     .then(data => data)
 }
 
-
 //EJERCICIO 6 
-
 function printGithubUserProfile(username) {
  return fetch(`https://api.github.com/users/${username}`)
     .then(response => response.json())
@@ -71,9 +60,6 @@ function printGithubUserProfile(username) {
     })
 }
 
-
-
-
 //EJERCICIO 7
 function getAndPrintGitHubUserProfile(username) {
     return fetch(`https://api.github.com/users/${username}`)
@@ -89,7 +75,6 @@ function getAndPrintGitHubUserProfile(username) {
     })
 }
 
-
 //EJERCICIO 8 NO ME DEJA LEER EL EVENT LISTENER
 // let form = document.getElementById("form-ej-8");
 // form.addEventListener("submit", function(event) {
@@ -98,9 +83,9 @@ function getAndPrintGitHubUserProfile(username) {
 //     console.log(event);
 // });
 
-
 //EJERCICIO 9
 function fetchGithubUsers(userNames) {
+    
     let promiseArr = []
 
     for (let i = 0; i < userNames.length; i++) {
